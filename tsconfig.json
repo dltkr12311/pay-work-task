@@ -14,7 +14,11 @@
     "sourceMap": true,
     "target": "esnext",
     "lib": ["esnext"],
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "baseUrl": "src",
+    "paths": {
+      "src/*": ["src/*"]
+    }
   },
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "babel.config.js"]
 }

@@ -1,11 +1,6 @@
 export const palette = {
   denimBlue: "#3a5998",
-  kakaoYellow: "#FAE100",
-  kakao: "#3C1E1E",
   lightLimeGreen: "##b7ea72",
-  warmPurple: "#782b8f",
-  warmPurple2: "#782b90",
-  warmPurple3: "#af2b90",
   gray1: "#f2f2f2",
   veryLightPinkThree: "#efefef",
   brownVeryLightPink: "#e6e6e6",
@@ -17,6 +12,8 @@ export const palette = {
   transparentBlack: "rgba(0, 0, 0, 0.3)",
   darkGrayishOrange: "#918579",
 
+  primary: "#6F72FB",
+  subPrimary: "#DE6C6E",
   black: "#1d1d1d",
   white: "#ffffff",
   offWhite: "#e6e6e6",
