@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { View, Text, TextStyle, ViewStyle, FlatList } from "react-native";
 import { TodoListItem, TodoTypes } from "components";
 import { palette } from "theme";
@@ -19,7 +19,7 @@ export const TodoList: React.FC = () => {
         <FlatList<ITodoList>
           data={Object.values(todoItems)}
           renderItem={({ item }) => <TodoListItem item={item} />}
-          keyExtractor={(item) => item && item.id.toString()}
+          keyExtractor={(item) => item.id.toString()}
           ListEmptyComponent={
             <View style={LIST_EMPTY_VIEW}>
               <Text style={LIST_EMPTY_TEXT}>Task가 없습니다.</Text>

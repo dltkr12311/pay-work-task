@@ -135,7 +135,7 @@ function todos(state: TodoListStatus = initialState, action: TodosAction) {
         todoError: action.payload.error,
       };
     default:
-      return Object.values({ ...state.todoList });
+      return { ...state.todoList };
   }
 }
 

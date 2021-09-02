@@ -1,4 +1,3 @@
-import shortid from "shortid";
 import { all, delay, put, takeLatest, fork } from "redux-saga/effects";
 
 import {
@@ -8,7 +7,6 @@ import {
   REMOVE_TODO,
   CHECK_TODO,
 } from "../actions/types";
-import { currentDate } from "utils/date";
 
 export function* fetchTodos() {
   try {
