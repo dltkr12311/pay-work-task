@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { Header, TodoList } from "components";
 
 export const TodoScreen: React.FC = () => {
-  const [textValue, setTextValue] = useState<string>("");
-
   return (
     <React.Fragment>
       <Header />

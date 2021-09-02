@@ -29,6 +29,7 @@ const ROOT: ViewStyle = {
   position: "relative",
   flexDirection: "row",
   justifyContent: "space-between",
+  alignContent: "center",
   borderBottomWidth: 1,
   marginBottom: 30,
   borderColor: color.line,

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback } from "react";
 import {
   View,
   Text,
@@ -8,39 +8,43 @@ import {
 } from "react-native";
 import { CheckBox, Icon } from "react-native-elements";
 import { palette, color } from "theme/";
+import { useDispatch } from "react-redux";
+import { checkTodo, removeTodo } from "store/actions/todos";
 import { TodoTypes } from "components";
 
-interface TodoItemProps {
-  items: TodoTypes[];
+interface TodoListProps extends TodoTypes {
+  item: TodoTypes[];
 }
 
-export const TodoListItem: React.FC<TodoItemProps> = ({ items }) => {
-  const { content, createdAt } = items;
-  const [isSelected, setSelection] = useState(false);
+export const TodoListItem: React.FC<TodoListProps> = ({ item }: any) => {
+  const dispatch = useDispatch();
+  const { id, content, isCheck, createdAt } = item;
 
-  const handleChecked = () => {
-    setSelection(!isSelected);
+  const onRemovePress = useCallback(() => {
+    console.log("id", id);
+    dispatch(removeTodo(id));
+  }, [id]);
+
+  const onCheckPress = () => {
+    console.log("isCheck", isCheck, "id", id);
+    dispatch(checkTodo(id, isCheck));
   };
 
   return (
     <View style={ROOT}>
       <CheckBox
-        checked={isSelected}
+        checked={isCheck}
         iconType="material"
         checkedIcon="check"
         uncheckedIcon="check"
-        checkedColor={palette.lightLimeGreen}
+        checkedColor={palette.primary}
         style={CHECK_BOX}
         size={25}
-        onPress={() => handleChecked()}
+        onPress={onCheckPress}
       />
-      <Text style={isSelected ? COMPLATED_TODO_TEXT : TODO_TEXT}>
-        {content}
-      </Text>
-      <Text style={isSelected ? COMPLATED_DATE_TEXT : DATE_TEXT}>
-        {createdAt}
-      </Text>
-      <TouchableOpacity style={TODO_DELETE}>
+      <Text style={isCheck ? COMPLATED_TODO_TEXT : TODO_TEXT}>{content}</Text>
+      <Text style={isCheck ? COMPLATED_DATE_TEXT : DATE_TEXT}>{createdAt}</Text>
+      <TouchableOpacity style={TODO_DELETE} onPress={onRemovePress}>
         <Icon type="evilicon" name="close-o" color={palette.angry} size={28} />
       </TouchableOpacity>
     </View>

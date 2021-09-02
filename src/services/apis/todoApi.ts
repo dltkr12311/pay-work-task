@@ -1,6 +1,6 @@
-export interface TodoTypes {
+export interface IInitialState {
   id: string;
   content: string;
   isCheck: boolean;
-  createdAt: string;
+  createdAt: Date;
 }

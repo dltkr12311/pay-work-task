@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Icon } from "react-native-elements";
 import { useDispatch } from "react-redux";
 import {
@@ -7,23 +7,35 @@ import {
   Modal,
   TextInput,
   Button,
-  Text,
-  TextStyle,
   TouchableOpacity,
 } from "react-native";
-import { color, palette } from "theme";
+import { palette } from "theme";
 import { closeModal } from "store/actions/modal";
+import shortid from "shortid";
+import { addTodo } from "store/actions/todos";
+import { currentDate } from "utils/date";
 
+const id = shortid.generate();
 export const AddTodoModal: React.FC = () => {
   const dispatch = useDispatch();
 
+  const [inputText, setInputText] = useState<string>("");
+  const onChangeInputText = () => {
+    console.log(inputText);
+    setInputText(inputText);
+  };
+
+  const onAddTodo = () => {
+    dispatch(addTodo(id, inputText, currentDate()));
+    setInputText("");
+  };
+
   return (
     <View>
-      <Modal animationType="slide" transparent={true}>
+      <Modal transparent={true}>
         <View style={MODAL_BACKGROUND}>
           <View style={MODAL_CONTAINER}>
             <View style={MODAL_HADER}>
-              <Text style={MODAL_TITLE}>Todo를 작성해 주세요.</Text>
               <TouchableOpacity
                 style={MODAL_CLOSE}
                 onPress={() => dispatch(closeModal())}
@@ -33,12 +45,14 @@ export const AddTodoModal: React.FC = () => {
             </View>
             <TextInput
               style={TEXT_INPUT}
-              placeholder="Add an item!"
+              placeholder="todo를 작성해 주세요."
+              onChangeText={onChangeInputText}
+              value={inputText}
               placeholderTextColor={"#999"}
               autoCorrect={false}
             />
             <View>
-              <Button title={"ADD"} onPress={() => null} />
+              <Button title={"ADD"} onPress={onAddTodo} />
             </View>
           </View>
         </View>
@@ -61,7 +75,7 @@ const MODAL_CONTAINER: ViewStyle = {
   backgroundColor: palette.white,
   borderRadius: 10,
   paddingTop: 20,
-  paddingBottom: 40,
+  paddingBottom: 20,
   paddingRight: 30,
   paddingLeft: 30,
   width: 300,
@@ -75,17 +89,12 @@ const MODAL_CONTAINER: ViewStyle = {
 };
 
 const MODAL_HADER: ViewStyle = {
-  flexDirection: "row",
+  width: "100%",
+  marginBottom: 20,
 };
 
 const MODAL_CLOSE: ViewStyle = {
-  marginLeft: 80,
-};
-
-const MODAL_TITLE: TextStyle = {
-  fontWeight: "bold",
-  fontSize: 16,
-  marginBottom: 20,
+  marginLeft: "auto",
 };
 
 const TEXT_INPUT: ViewStyle = {

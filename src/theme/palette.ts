@@ -1,6 +1,6 @@
 export const palette = {
   denimBlue: "#3a5998",
-  lightLimeGreen: "##b7ea72",
+  lightLimeGreen: "#b7ea72",
   gray1: "#f2f2f2",
   veryLightPinkThree: "#efefef",
   brownVeryLightPink: "#e6e6e6",
